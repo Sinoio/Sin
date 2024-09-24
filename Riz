@@ -693,6 +693,7 @@ while true do
 
     wait(0.1)  -- Small delay to avoid constant checking
 end
+end
     local character = player.Character
     if not character then
         return
