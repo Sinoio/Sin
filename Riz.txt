@@ -1,0 +1,733 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local topbarPlus = playerGui:WaitForChild("TopbarPlus")
+local topbarContainer = topbarPlus:WaitForChild("TopbarContainer")
+local unnamedIcon = topbarContainer:WaitForChild("UnnamedIcon")
+local dropdownContainer = unnamedIcon:WaitForChild("DropdownContainer")
+local dropdownFrame = dropdownContainer:WaitForChild("DropdownFrame")
+
+local charFrame = Instance.new("Frame")
+charFrame.Name = "Char"
+charFrame.Parent = dropdownFrame
+charFrame.BackgroundTransparency = 1
+charFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+charFrame.BorderSizePixel = 1
+charFrame.LayoutOrder = 14
+charFrame.Size = UDim2.new(1, 0, 0, 32)
+charFrame.SizeConstraint = Enum.SizeConstraint.RelativeXY
+charFrame.ZIndex = 1
+
+local iconButton = Instance.new("TextButton")
+iconButton.Name = "IconButton"
+iconButton.Parent = charFrame
+iconButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+iconButton.BackgroundTransparency = 0.5
+iconButton.BorderSizePixel = 0
+iconButton.Text = ""
+iconButton.TextScaled = false
+iconButton.TextSize = 8
+iconButton.TextTransparency = 1
+iconButton.TextWrapped = false
+iconButton.Position = UDim2.new(0, 0, 0, 0)
+iconButton.Size = UDim2.new(1, 0, 1, 0)
+iconButton.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconButton.Font = Enum.Font.Legacy
+iconButton.LayoutOrder = 0
+
+local iconImage = Instance.new("ImageLabel")
+iconImage.Name = "IconImage"
+iconImage.Parent = iconButton
+iconImage.AnchorPoint = Vector2.new(0, 0.5)
+iconImage.BackgroundTransparency = 1
+iconImage.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconImage.BorderSizePixel = 1
+iconImage.Image = "rbxassetid://17140853847"
+iconImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+iconImage.ImageRectOffset = Vector2.new(0, 0)
+iconImage.ImageRectSize = Vector2.new(0, 0)
+iconImage.ImageTransparency = 0
+iconImage.LayoutOrder = 0
+iconImage.Position = UDim2.new(0, 12, 0, 15)
+iconImage.Size = UDim2.new(0, 24, 0, 24)
+iconImage.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconImage.TileSize = UDim2.new(1, 0, 1, 0)
+iconImage.SliceScale = 1
+iconImage.ZIndex = 11
+
+local iconLabel = Instance.new("TextLabel")
+iconLabel.Name = "IconLabel"
+iconLabel.Parent = iconButton
+iconLabel.AnchorPoint = Vector2.new(0, 0.5)
+iconLabel.BackgroundTransparency = 1
+iconLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconLabel.BorderSizePixel = 1
+iconLabel.Font = Enum.Font.GothamMedium
+iconLabel.LayoutOrder = 0
+iconLabel.Text = "KJ"
+iconLabel.TextColor3 = Color3.fromRGB(255, 216, 19)
+iconLabel.TextSize = 14
+iconLabel.TextScaled = false
+iconLabel.TextTransparency = 0
+iconLabel.TextWrapped = false
+iconLabel.TextXAlignment = Enum.TextXAlignment.Left
+iconLabel.TextYAlignment = Enum.TextYAlignment.Center
+iconLabel.Position = UDim2.new(0, 44, 0, 15)
+iconLabel.Size = UDim2.new(1, -56, 0, 7)
+iconLabel.TextStrokeTransparency = 1
+iconLabel.ZIndex = 11
+
+local function onErrorNotification()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "NOTIFICATION";
+        Text = "YOU'RE ALREADY PLAYING AS THIS CHARACTER.";
+        Icon = "";
+        Duration = 5;
+    })
+end
+
+local function handleIconButtonClick()
+      if not game.Players.LocalPlayer.Backpack:FindFirstChild("Normal Punch") then
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "Reset";
+    Text = "Change Character To The Strongest Hero/Saitama";
+    Duration = 5; -- how long the notification should in secounds
+    })
+end
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Normal Punch") then
+task.spawn(function()
+local soundId = "rbxassetid://17325174223"
+
+-- Create a Sound instance
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Volume = 2
+sound.Parent = workspace -- You can change this to any part you want the sound to play from
+
+-- Play the sound
+sound:Play()
+end)
+task.spawn(function()
+local animationId = "rbxassetid://17325160621"
+
+-- Function to play the animation
+local function playAnimation(player)
+    local character = player.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            -- Create a new Animation instance
+            local animation = Instance.new("Animation")
+            animation.AnimationId = animationId
+
+            -- Create an AnimationTrack for the Animation
+            local animationTrack = humanoid:LoadAnimation(animation)
+            animationTrack:Play()
+        end
+    end
+end
+
+-- Example: Play animation for the LocalPlayer
+local player = game.Players.LocalPlayer
+playAnimation(player)
+end)
+task.spawn(function()
+-- KJ Manipulator Script --
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+if player and player:FindFirstChild("Backpack") then
+    local backpack = player.Backpack
+    
+    for _, item in ipairs(backpack:GetChildren()) do
+        if item:IsA("Tool") then
+            item:Destroy()
+        end
+    end
+end
+
+-- Create the Tool instance
+local tool = Instance.new("Tool")
+tool.Name = "Ravage"
+tool.RequiresHandle = false
+tool.CanBeDropped = true
+tool.ToolTip = "Ravaging my way outta here!"
+
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+-- Create the Tool instance
+local tool = Instance.new("Tool")
+
+-- Set the tool's properties
+tool.Name = "Swift Sweep"
+tool.RequiresHandle = false  -- Set to true if you have a handle part
+tool.CanBeDropped = true     -- Change as needed
+
+-- Add a description or other properties
+tool.ToolTip = "A swift sweeping tool for fast clean-ups."
+
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+-- Create the Tool instance
+local tool = Instance.new("Tool")
+
+-- Set the tool's properties
+tool.Name = "Collateral Ruin"
+tool.RequiresHandle = false  -- Set to true if you have a handle part
+tool.CanBeDropped = true     -- Change as needed
+
+-- Add a description or other properties
+tool.ToolTip = "Unleash ruinous power!"
+
+-- Add the tool to the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local function findGuiAndSetText()
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+    if screenGui then
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+        if magicHealthFrame then
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+            if textLabel then
+                textLabel.Text = "20 SERIES"
+            end
+        end
+    end
+end
+
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+findGuiAndSetText()
+end)
+
+-- Function to handle animation detection and replacement
+local function handleAnimationDetection(animIdsToStop, replacementAnimId)
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+
+    local function onAnimPlayed(animationTrack)
+        local animId = tonumber(string.match(animationTrack.Animation.AnimationId, "%d+"))
+
+        for _, stopId in ipairs(animIdsToStop) do
+            if animId == stopId then
+                animationTrack:Stop()
+                local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+debounce = false -- Activate debounce
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://" .. replacementAnimId
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0" -- don't change anything here
+
+spawn(function()
+    wait(1)
+    debounce = true
+end)
+
+playAnim:Play()
+playAnim:AdjustSpeed(1)
+
+local Players = game:GetService("Players")
+local Character = Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()
+
+local animationPlayed = false -- Flag to track if the animation has already been played
+            end
+        end
+    end
+
+    humanoid.AnimationPlayed:Connect(onAnimPlayed)
+end
+
+-- First set of animations
+local firstAnimIdsToStop = {10469493270, 13532562418, 13491635433, 13370310513, 14004222985, 15259161390, 16515503507, 17889458563}
+local m1 = 17325510002
+handleAnimationDetection(firstAnimIdsToStop, m1)
+
+-- Second set of animations
+local secondAnimIdsToStop = {10469630950, 13532600125, 13296577783, 13390230973, 13997092940, 15240216931, 16515520431, 17889461810}
+local m2 = 17325513870
+handleAnimationDetection(secondAnimIdsToStop, m2)
+
+-- Third set of animations
+local thirdAnimIdsToStop = {10469639222, 13532604085, 13295919399, 13378751717, 14001963401, 15240176873, 16515448089, 17889471098}
+local m3 = 17325522388
+handleAnimationDetection(thirdAnimIdsToStop, m3)
+
+-- Fourth set of animations
+local fourthAnimIdsToStop = {10469643643, 13294471966, 13295936866, 13378708199, 14136436157, 15162694192, 16552234590, 17889290569}
+local m4 = 17325537719
+handleAnimationDetection(fourthAnimIdsToStop, m4)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local animationIdToCheck = "rbxassetid://12447707844"
+local debounce = false -- To prevent multiple detections
+
+-- Function to check if the specific animation is playing
+local function isAnimationPlaying()
+    local humanoid = LocalPlayer.Character.Humanoid
+    for _, track in pairs(humanoid:GetPlayingAnimationTracks()) do
+        track:Stop()
+        if track.Animation.AnimationId == animationIdToCheck then
+            return true  -- Animation is playing
+        end
+    end
+    return false  -- Animation is not playing
+end
+
+-- Function to check movement state
+local function checkMovementState()
+    local moveDirection = LocalPlayer.Character.Humanoid.MoveDirection.Magnitude
+    
+    if moveDirection > 0 then
+       task.spawn(function()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humRp = character:WaitForChild("HumanoidRootPart")
+
+-- Create and play sound effects
+local function playSounds()
+    local soundSFX = Instance.new("Sound")
+    soundSFX.SoundId = "rbxassetid://18445228824"
+    soundSFX.Volume = 2
+    soundSFX.Name = "SFX"
+    soundSFX.Parent = humRp
+    soundSFX:Play()
+
+    local soundSFX2 = Instance.new("Sound")
+    soundSFX2.SoundId = "rbxassetid://18445228136"
+    soundSFX2.Volume = 2
+    soundSFX2.Name = "SFX2"
+    soundSFX2.Parent = humRp
+    soundSFX2:Play()
+
+    local soundSFX1 = Instance.new("Sound")
+    soundSFX1.SoundId = "rbxassetid://18445227792"
+    soundSFX1.Volume = 2
+    soundSFX1.Name = "SFX1"
+    soundSFX1.Parent = humRp
+    soundSFX1:Play()
+end
+
+local function createEffects()
+    -- Create and configure the fine effect
+    wait(1.7)
+    local actuallyNice = game.ReplicatedStorage.Resources.KJEffects["fine...1"]:Clone()
+    actuallyNice.CFrame = humRp.CFrame
+    actuallyNice.CanCollide = false
+
+    -- Create and configure the emit effects
+    local boom = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"]:Clone()
+    boom.Parent = workspace
+    boom.CanCollide = false
+    boom.CFrame = humRp.CFrame * CFrame.new(0, -0.65, 0)
+
+    local boom2 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit2"]:Clone()
+    boom2.Parent = workspace
+    boom2.CanCollide = false
+    boom2.CFrame = humRp.CFrame * CFrame.new(0, -0.65, 0)
+
+    -- Emit particles from the first effect
+    delay(0.16, function()
+        for _, Particles in pairs(boom:GetDescendants()) do
+            if Particles:IsA("ParticleEmitter") then
+                actuallyNice.Parent = workspace
+                Particles:Emit(Particles:GetAttribute("EmitCount"))
+            end
+        end
+    end)
+
+    -- Cleanup after 8.17 seconds
+    delay(8.17, function()
+        for _, Particles in pairs(boom2:GetDescendants()) do
+            if Particles:IsA("ParticleEmitter") then
+                Particles:Emit(Particles:GetAttribute("EmitCount"))
+            end
+        end
+
+        boom2:Destroy()
+    end)
+end
+
+local function executeVFX()
+    -- Play sound effects and create visual effects
+    playSounds()
+    createEffects()
+end
+
+-- Execute the VFX when the script runs
+executeVFX()
+end)
+task.spawn(function()
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+debounce = false -- Activate debounce
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://18445236460"
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0"
+
+spawn(function()
+    wait(1)
+    debounce = true
+end)
+
+playAnim:Play()
+playAnim:AdjustSpeed(1)
+wait(0.3)
+playAnim:AdjustSpeed(1)
+
+local Players = game:GetService("Players")
+local Character = Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()
+
+local animationPlayed = false -- Flag to track if the animation has already been played
+end)
+task.spawn(function()
+wait(0.2)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local teleportDistance = 0.3 -- The distance to teleport forward each step
+local teleportInterval = 0 -- Time interval between each teleport (in seconds)
+local totalDuration = 1.47 -- Total duration of the teleportation (in seconds)
+
+local timeElapsed = 0
+local startTime = tick() -- Record the start time
+
+while timeElapsed < totalDuration do
+    humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, -teleportDistance)
+    wait(teleportInterval)
+    timeElapsed = tick() - startTime -- Update the elapsed time
+end
+end)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local animationId = 7815618175 -- Replace with your specific animation ID
+local isBlocked = true -- Start with blocking the animation
+
+local function onAnimationPlayed(animationTrack)
+    if isBlocked and animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        -- Stop the specific animation
+        animationTrack:Stop()
+    end
+end
+
+local function blockAnimation()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+
+    -- Connect to the animation played event
+    humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+    -- You can also stop all currently playing animations if needed
+    for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+        if animTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+            animTrack:Stop()
+        end
+    end
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+wait(3)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+    -- Wait for 4 seconds before unblocking
+    wait()
+    isBlocked = false -- Unblock the animation
+end
+
+-- Start blocking the animation
+blockAnimation()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local soundsToBlock = {
+    ["rbxassetid://12332099688"] = true,
+    ["rbxassetid://12333042986"] = true,
+    ["rbxassetid://14762034452"] = true,
+}
+
+local function onSoundPlayed(sound)
+    if soundsToBlock[sound.SoundId] then
+        sound.Volume = 0 -- Set volume to 0 instead of stopping
+    end
+end
+
+local function blockSounds()
+    -- Connect to the Sound.Played event in the workspace
+    workspace.DescendantAdded:Connect(function(descendant)
+        if descendant:IsA("Sound") then
+            descendant.Played:Connect(function() onSoundPlayed(descendant) end)
+        end
+    end)
+    
+    -- Check for existing sounds when the script runs
+    for _, sound in ipairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound.Played:Connect(function() onSoundPlayed(sound) end)
+        end
+    end
+end
+
+-- Start blocking sounds
+blockSounds()
+
+if humanoid.Health == 0 then
+    for _, sound in ipairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") and soundsToBlock[sound.SoundId] then
+            sound.Volume = 1 -- Restore volume when the player dies
+        end
+    end
+end
+    elseif moveDirection == 0 then
+        task.spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humRp = character:WaitForChild("HumanoidRootPart")
+
+    -- Create and play sound effects
+    local function playSounds()
+        local soundSFX = Instance.new("Sound")
+        soundSFX.SoundId = "rbxassetid://17150550302"
+        soundSFX.Volume = 2
+        soundSFX.Name = "SFX"
+        soundSFX.Parent = humRp
+        soundSFX:Play()
+
+        local soundSFX2 = Instance.new("Sound")
+        soundSFX2.SoundId = "rbxassetid://17150550559"
+        soundSFX2.Volume = 2
+        soundSFX2.Name = "SFX2"
+        soundSFX2.Parent = humRp
+        soundSFX2:Play()
+    end
+
+    local function createEffects()
+        -- Create and configure the fine effect
+        local actuallyNice = game.ReplicatedStorage.Resources.KJEffects["fine...1"]:Clone()
+        actuallyNice.Position = humRp.Position
+        actuallyNice.CanCollide = false
+
+        -- Create a weld for the fine effect
+        local weld = Instance.new("Weld")
+        weld.Part0 = actuallyNice
+        weld.Part1 = humRp
+        weld.C1 = CFrame.new(0, 0, 0)
+        weld.Parent = actuallyNice
+
+        actuallyNice.Parent = workspace
+
+        -- Create and configure the emit effects
+        local boom = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"]:Clone()
+        boom.CanCollide = false
+        boom.Position = humRp.Position + Vector3.new(0, -0.65, 0)
+        boom.Parent = workspace
+
+        local boom2 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit2"]:Clone()
+        boom2.CanCollide = false
+        boom2.Position = humRp.Position + Vector3.new(0, -0.65, 0)
+        boom2.Parent = workspace
+
+        -- Emit particles from the first effect
+        delay(0.16, function()
+            for _, Particles in pairs(boom:GetDescendants()) do
+                if Particles:IsA("ParticleEmitter") then
+                    Particles:Emit(Particles:GetAttribute("EmitCount"))
+                end
+            end
+        end)
+
+        -- Cleanup after 8.17 seconds
+        delay(8.17, function()
+            for _, Particles in pairs(boom2:GetDescendants()) do
+                if Particles:IsA("ParticleEmitter") then
+                    Particles:Emit(Particles:GetAttribute("EmitCount"))
+                end
+            end
+
+            wait()
+            actuallyNice:Destroy()
+        end)
+    end
+
+    local function executeVFX()
+        -- Play sound effects and create visual effects
+        playSounds()
+        createEffects()
+    end
+
+    -- Execute the VFX when the script runs
+    executeVFX()
+end)
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+debounce = false -- Activate debounce
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://17140902079"
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0"
+
+spawn(function()
+    wait(1)
+    debounce = true
+end)
+
+playAnim:Play()
+playAnim:AdjustSpeed(1)
+wait(0.3)
+playAnim:AdjustSpeed(1)
+
+local Players = game:GetService("Players")
+local Character = Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()
+
+local animationPlayed = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local animationId = 7815618175 -- Replace with your specific animation ID
+local isBlocked = true -- Start with blocking the animation
+
+local function onAnimationPlayed(animationTrack)
+    if isBlocked and animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        -- Stop the specific animation
+        animationTrack:Stop()
+    end
+end
+
+local function blockAnimation()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+
+    -- Connect to the animation played event
+    humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+    -- You can also stop all currently playing animations if needed
+    for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+        if animTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+            animTrack:Stop()
+        end
+    end
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+wait(9.55)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+    -- Wait for 4 seconds before unblocking
+    wait()
+    isBlocked = false -- Unblock the animation
+end
+
+-- Start blocking the animation
+blockAnimation()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local soundsToBlock = {
+    ["rbxassetid://12332099688"] = true,
+    ["rbxassetid://12333042986"] = true,
+    ["rbxassetid://14762034452"] = true,
+}
+
+local function onSoundPlayed(sound)
+    if soundsToBlock[sound.SoundId] then
+        sound.Volume = 0 -- Set volume to 0 instead of stopping
+    end
+end
+
+local function blockSounds()
+    -- Connect to the Sound.Played event in the workspace
+    workspace.DescendantAdded:Connect(function(descendant)
+        if descendant:IsA("Sound") then
+            descendant.Played:Connect(function() onSoundPlayed(descendant) end)
+        end
+    end)
+    
+    -- Check for existing sounds when the script runs
+    for _, sound in ipairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound.Played:Connect(function() onSoundPlayed(sound) end)
+        end
+    end
+end
+
+-- Start blocking sounds
+blockSounds()
+
+if humanoid.Health == 0 then
+    for _, sound in ipairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") and soundsToBlock[sound.SoundId] then
+            sound.Volume = 1 -- Restore volume when the player dies
+        end
+    end
+end
+    end
+end
+
+-- Main loop to detect movement or stillness when animation is playing
+while true do
+    if not debounce and isAnimationPlaying() then
+        -- Perform movement state detection
+        checkMovementState()
+
+        -- Set debounce to true to prevent further detections for 8 seconds
+        debounce = true
+        
+        -- Wait 8 seconds before allowing further detection
+        wait(8) 
+        
+        -- After waiting, you can reset the debounce so it can check for animations again
+        debounce = false
+    end
+
+    wait(0.1)  -- Small delay to avoid constant checking
+end
+    local character = player.Character
+    if not character then
+        return
+    end
+
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun and scriptHasRun.Value then
+        onErrorNotification()
+        return
+    end
+
+    if not scriptHasRun then
+        scriptHasRun = Instance.new("BoolValue")
+        scriptHasRun.Name = "ScriptHasRun"
+        scriptHasRun.Value = true
+        scriptHasRun.Parent = character
+    else
+        scriptHasRun.Value = true
+    end
+end
+
+iconButton.MouseButton1Click:Connect(handleIconButtonClick)
+
+print("Script Loaded 0 cap")  -- Debug print to confirm script initialization
+
+player.CharacterAdded:Connect(function(character)
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
+    end
+end)
+
+if player.Character then
+    local scriptHasRun = player.Character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
+    end
+end
