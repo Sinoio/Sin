@@ -1,0 +1,473 @@
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Credits";
+    Text = "By KJ And EpicEditEmporium";
+    Icon = "rbxassetid://120884922894790";
+    Duration = 5;
+    })
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local topbarPlus = playerGui:WaitForChild("TopbarPlus")
+local topbarContainer = topbarPlus:WaitForChild("TopbarContainer")
+local unnamedIcon = topbarContainer:WaitForChild("UnnamedIcon")
+local dropdownContainer = unnamedIcon:WaitForChild("DropdownContainer")
+local dropdownFrame = dropdownContainer:WaitForChild("DropdownFrame")
+
+local charFrame = Instance.new("Frame")
+charFrame.Name = "Char"
+charFrame.Parent = dropdownFrame
+charFrame.BackgroundTransparency = 1
+charFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+charFrame.BorderSizePixel = 1
+charFrame.LayoutOrder = 14
+charFrame.Size = UDim2.new(1, 0, 0, 32)
+charFrame.SizeConstraint = Enum.SizeConstraint.RelativeXY
+charFrame.ZIndex = 1
+
+local iconButton = Instance.new("TextButton")
+iconButton.Name = "IconButton"
+iconButton.Parent = charFrame
+iconButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+iconButton.BackgroundTransparency = 0.5
+iconButton.BorderSizePixel = 0
+iconButton.Text = ""
+iconButton.TextScaled = false
+iconButton.TextSize = 8
+iconButton.TextTransparency = 1
+iconButton.TextWrapped = false
+iconButton.Position = UDim2.new(0, 0, 0, 0)
+iconButton.Size = UDim2.new(1, 0, 1, 0)
+iconButton.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconButton.Font = Enum.Font.Legacy
+iconButton.LayoutOrder = 0
+
+local iconImage = Instance.new("ImageLabel")
+iconImage.Name = "IconImage"
+iconImage.Parent = iconButton
+iconImage.AnchorPoint = Vector2.new(0, 0.5)
+iconImage.BackgroundTransparency = 1
+iconImage.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconImage.BorderSizePixel = 1
+iconImage.Image = "rbxassetid://17140853847"
+iconImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+iconImage.ImageRectOffset = Vector2.new(0, 0)
+iconImage.ImageRectSize = Vector2.new(0, 0)
+iconImage.ImageTransparency = 0
+iconImage.LayoutOrder = 0
+iconImage.Position = UDim2.new(0, 12, 0, 15)
+iconImage.Size = UDim2.new(0, 24, 0, 24)
+iconImage.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconImage.TileSize = UDim2.new(1, 0, 1, 0)
+iconImage.SliceScale = 1
+iconImage.ZIndex = 11
+
+local iconLabel = Instance.new("TextLabel")
+iconLabel.Name = "IconLabel"
+iconLabel.Parent = iconButton
+iconLabel.AnchorPoint = Vector2.new(0, 0.5)
+iconLabel.BackgroundTransparency = 1
+iconLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconLabel.BorderSizePixel = 1
+iconLabel.Font = Enum.Font.GothamMedium
+iconLabel.LayoutOrder = 0
+iconLabel.Text = "KJ"
+iconLabel.TextColor3 = Color3.fromRGB(255, 216, 19)
+iconLabel.TextSize = 14
+iconLabel.TextScaled = false
+iconLabel.TextTransparency = 0
+iconLabel.TextWrapped = false
+iconLabel.TextXAlignment = Enum.TextXAlignment.Left
+iconLabel.TextYAlignment = Enum.TextYAlignment.Center
+iconLabel.Position = UDim2.new(0, 44, 0, 15)
+iconLabel.Size = UDim2.new(1, -56, 0, 7)
+iconLabel.TextStrokeTransparency = 1
+iconLabel.ZIndex = 11
+
+local function handleIconButtonClick()
+      if game.Players.LocalPlayer.Backpack:FindFirstChild("Ravage") and game.Players.LocalPlayer.Backpack:FindFirstChild("Swift Sweep") and game.Players.LocalPlayer.Backpack:FindFirstChild("Collateral Ruin") or game.Players.LocalPlayer.Backpack:FindFirstChild("Stoic Bomb") and game.Players.LocalPlayer.Backpack:FindFirstChild("20-20-20 Dropkick") and game.Players.LocalPlayer.Backpack:FindFirstChild("Five Seasons") then
+     game.StarterGui:SetCore("SendNotification", {
+        Title = "NOTIFICATION";
+        Text = "YOU'RE ALREADY PLAYING AS THIS CHARACTER.";
+        Duration = 5;
+    })
+    local sound = "rbxassetid://3398620867"
+
+local soundId = sound
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Volume = 1
+sound.Parent = game.Workspace  -- Parent the sound to the Workspace
+sound.TimePosition = 0  -- Start the sound at 4 seconds
+
+local function extendDuration(sound, targetDuration)
+    local currentDuration = sound.TimeLength
+    local speedFactor = currentDuration / targetDuration
+    sound.PlaybackSpeed = speedFactor
+end
+
+sound:Play()
+end
+local player = game.Players.LocalPlayer
+local backpack = player.Backpack
+
+-- Check if "Consecutive Punches" is not in the backpack and "Death Counter" is not found
+if not backpack:FindFirstChild("Consecutive Punches") and not backpack:FindFirstChild("Death Counter") then
+    function Callback(answer)
+         local args = {
+    [1] = {
+        ["Goal"] = "Change Character",
+        ["Character"] = "Bald"
+    }
+}
+
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+end
+
+    local Bindable = Instance.new("BindableFunction")
+    Bindable.OnInvoke = Callback
+
+    function Callback(answer)
+    if answer == "Change Character" then 
+        local args = {
+            [1] = {
+                ["Goal"] = "Change Character",
+                ["Character"] = "Bald"
+            }
+        }
+
+        game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+    end
+end
+
+local Bindable = Instance.new("BindableFunction")
+Bindable.OnInvoke = Callback
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "NOTIFICATION",
+    Text = "For Script To Work, Please Change To The Strongest Hero / Saitama",
+    Duration = 5,
+    Button1 = "Change Character",
+    Callback = Bindable
+})
+    local sound = "rbxassetid://3398620867"
+
+local soundId = sound
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Volume = 1
+sound.Parent = game.Workspace  -- Parent the sound to the Workspace
+sound.TimePosition = 0  -- Start the sound at 4 seconds
+
+local function extendDuration(sound, targetDuration)
+    local currentDuration = sound.TimeLength
+    local speedFactor = currentDuration / targetDuration
+    sound.PlaybackSpeed = speedFactor
+end
+
+sound:Play()
+end
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Death Counter") then
+       game.StarterGui:SetCore("SendNotification", {
+    Title = "NOTIFICATION";
+    Text = "GET RID OF ULTIMATE MODE";
+    Duration = 5;
+    })
+    local sound = "rbxassetid://3398620867"
+
+local soundId = sound
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Volume = 1
+sound.Parent = game.Workspace  -- Parent the sound to the Workspace
+sound.TimePosition = 0  -- Start the sound at 4 seconds
+
+local function extendDuration(sound, targetDuration)
+    local currentDuration = sound.TimeLength
+    local speedFactor = currentDuration / targetDuration
+    sound.PlaybackSpeed = speedFactor
+end
+
+sound:Play()
+     end
+local requiredTools = {"Normal Punch", "Consecutive Punches", "Shove", "Uppercut"}
+local player = game.Players.LocalPlayer
+
+-- Function to check if all required tools are in the player's backpack
+local function areRequiredToolsInBackpack()
+    local backpack = player:WaitForChild("Backpack")
+    for _, toolName in ipairs(requiredTools) do
+        if not backpack:FindFirstChild(toolName) then
+            return false -- If any tool is missing, return false
+        end
+    end
+    return true -- All tools are present
+end
+
+-- Main script logic that only runs if all tools are present
+if areRequiredToolsInBackpack() then
+    -- KJ Manipulator Script --
+    local p = game.Players.LocalPlayer
+local s = function(c)
+    local r = game:GetService("ReplicatedStorage")
+    local t = r:FindFirstChild("Resources")
+    if t then
+        local u = t:FindFirstChild("le phone")
+        if u then
+            local v = u:Clone()
+            v.Parent = c
+
+
+            local w = c:FindFirstChild("RightHand") or c:FindFirstChild("Right Arm")
+            if w then
+                if not v.PrimaryPart then
+                    local basePart = v:FindFirstChildWhichIsA("BasePart")
+                    if basePart then
+                        v.PrimaryPart = basePart
+                    else
+                        return
+                    end
+                end
+                
+                local x = Instance.new("Weld")
+                x.Part0 = w
+                x.Part1 = v.PrimaryPart
+                x.C0 = CFrame.new(0, -1, 0)
+                x.Parent = w
+
+
+                v:SetPrimaryPartCFrame(w.CFrame * CFrame.new(0, -1, 0))
+
+
+                -- Play the animation
+                local anim = Instance.new("Animation")
+                anim.AnimationId = "rbxassetid://17325160621"
+                
+                local animTrack = c.Humanoid:LoadAnimation(anim)
+                animTrack:Play()
+
+
+                -- Create and play the sound
+                local sound = Instance.new("Sound")
+                sound.SoundId = "rbxassetid://17325174223"
+                sound.Parent = c.Torso or c:FindFirstChild("UpperTorso") -- Adjust if using R6 or R15
+                sound:Play()
+                
+                -- Delete the model after 1.0 seconds
+                delay(1.0, function()
+                    if v and v.Parent then
+                        v:Destroy()
+
+
+local p = game.Players.LocalPlayer
+local a = p.Character
+local x = game:GetService("ReplicatedStorage")
+local v = game:GetService("Workspace")
+
+
+local function r()
+    local s = x:FindFirstChild("Resources")
+    if not s then return end
+
+
+    local m = s:FindFirstChild("PhonePhysicsTest")
+    if not m then return end
+
+
+    local c = m:Clone()
+
+
+    local h = a:FindFirstChild("Head")
+    if not h then return end
+
+
+    local d = h.CFrame.LookVector
+    local o = h.Position + d * 0.5
+
+
+    c:SetPrimaryPartCFrame(CFrame.new(o))
+    c.Parent = v
+
+
+    wait(5.3)
+    if c and c.Parent then
+        c:Destroy()
+    end
+end
+
+
+r()
+
+
+                    end
+                end)
+            end
+        end
+    end
+end
+
+
+p.CharacterAdded:Connect(s)
+if p.Character then
+    s(p.Character)
+end
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+if player and player:FindFirstChild("Backpack") then
+    local backpack = player.Backpack
+    
+    for _, item in ipairs(backpack:GetChildren()) do
+        if item:IsA("Tool") then
+            item:Destroy()
+        end
+    end
+end
+
+    local tool1 = Instance.new("Tool")
+    tool1.Name = "Ravage"
+    tool1.RequiresHandle = false
+    tool1.CanBeDropped = true
+    tool1.ToolTip = "Ravaging my way outta here!"
+    tool1.Parent = player.Backpack
+
+    local tool2 = Instance.new("Tool")
+    tool2.Name = "Swift Sweep"
+    tool2.RequiresHandle = false
+    tool2.CanBeDropped = true
+    tool2.ToolTip = "A swift sweeping tool for fast clean-ups."
+    tool2.Parent = player.Backpack
+
+    local tool3 = Instance.new("Tool")
+    tool3.Name = "Collateral Ruin"
+    tool3.RequiresHandle = false
+    tool3.CanBeDropped = true
+    tool3.ToolTip = "Unleash ruinous power!"
+    tool3.Parent = player.Backpack
+
+    -- Function to find and set text in the player's GUI
+    local playerGui = player:WaitForChild("PlayerGui")
+    local function findGuiAndSetText()
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "20 SERIES"
+                end
+            end
+        end
+    end
+
+    playerGui.DescendantAdded:Connect(findGuiAndSetText)
+    findGuiAndSetText()
+
+-- Function to handle animation detection and replacement
+local function handleAnimationDetection(animIdsToStop, replacementAnimId)
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+
+    local function onAnimPlayed(animationTrack)
+        local animId = tonumber(string.match(animationTrack.Animation.AnimationId, "%d+"))
+
+        for _, stopId in ipairs(animIdsToStop) do
+            if animId == stopId then
+                animationTrack:Stop()
+                local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+debounce = false -- Activate debounce
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://" .. replacementAnimId
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0" -- don't change anything here
+
+spawn(function()
+    wait(1)
+    debounce = true
+end)
+
+playAnim:Play()
+playAnim:AdjustSpeed(1)
+
+local Players = game:GetService("Players")
+local Character = Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()
+
+local animationPlayed = false -- Flag to track if the animation has already been played
+            end
+        end
+    end
+
+    humanoid.AnimationPlayed:Connect(onAnimPlayed)
+end
+
+-- First set of animations
+local firstAnimIdsToStop = {10469493270, 13532562418, 13491635433, 13370310513, 14004222985, 15259161390, 16515503507, 17889458563}
+local m1 = 17325510002
+handleAnimationDetection(firstAnimIdsToStop, m1)
+
+-- Second set of animations
+local secondAnimIdsToStop = {10469630950, 13532600125, 13296577783, 13390230973, 13997092940, 15240216931, 16515520431, 17889461810}
+local m2 = 17325513870
+handleAnimationDetection(secondAnimIdsToStop, m2)
+
+-- Third set of animations
+local thirdAnimIdsToStop = {10469639222, 13532604085, 13295919399, 13378751717, 14001963401, 15240176873, 16515448089, 17889471098}
+local m3 = 17325522388
+handleAnimationDetection(thirdAnimIdsToStop, m3)
+
+-- Fourth set of animations
+local fourthAnimIdsToStop = {10469643643, 13294471966, 13295936866, 13378708199, 14136436157, 15162694192, 16552234590, 17889290569}
+local m4 = 17325537719
+handleAnimationDetection(fourthAnimIdsToStop, m4)
+local nol = game:HttpGet("https://raw.githubusercontent.com/Fromonor/Not/refs/heads/main/full")
+local sub = game:HttpGet("https://pastebin.com/raw/3JdAaFgU")
+task.spawn(function()
+loadstring(sub)()
+end)
+task.spawn(function()
+loadstring(game:HttpGet("https://pastebin.com/raw/XyXfHWZz"))()
+end)
+task.spawn(function()
+loadstring(nol)()
+end)
+end
+    local character = player.Character
+    if not character then
+        return
+    end
+
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun and scriptHasRun.Value then
+        return
+    end
+
+    if not scriptHasRun then
+        scriptHasRun = Instance.new("BoolValue")
+        scriptHasRun.Name = "ScriptHasRun"
+        scriptHasRun.Value = true
+        scriptHasRun.Parent = character
+    else
+        scriptHasRun.Value = true
+    end
+end
+
+iconButton.MouseButton1Click:Connect(handleIconButtonClick)
+
+print("Script Loaded 0 cap")  -- Debug print to confirm script initialization
+
+player.CharacterAdded:Connect(function(character)
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
+    end
+end)
+
+if player.Character then
+    local scriptHasRun = player.Character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
+    end
+end
